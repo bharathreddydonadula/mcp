@@ -1,0 +1,28 @@
+[project]
+name = "servicenow-mcp"
+version = "0.1.0"
+description = "Production-quality ServiceNow MCP Server using the official MCP Python SDK and ServiceNow REST APIs"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "python-dotenv>=1.0.0",
+    "tenacity>=9.0.0",
+]
+
+[project.scripts]
+servicenow-mcp = "server:main"
+
+[tool.ruff.lint.isort]
+known-first-party = ["auth", "client", "services", "tools", "models", "exceptions", "config"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+pythonpath = ["."]
